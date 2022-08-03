@@ -3,13 +3,13 @@
         <div class="header3-wrap">
             <div class="header__logo">
                 <a href="#">
-                    <img src="<?=base_url()?>assets/images/icon/log.png" alt="Helpdesk INDOSAR" />
+                    <img src="<?= base_url() ?>assets/images/icon/log.png" alt="Helpdesk INDOSAR" />
                 </a>
             </div>
             <div class="header__navbar">
                 <ul class="list-unstyled">
                     <li class="has-sub">
-                        <a href="index.php">
+                        <a href="<?= base_url('home') ?>">
                             <i class="fas fa-home"></i>Home
                             <span class="bot-line"></span>
                         </a>
@@ -25,7 +25,7 @@
                             <span class="bot-line"></span>Cek Status WO</a>
                     </li>
                     <li>
-                        <a href="admin/index.php">
+                        <a href="<?= base_url('auth') ?>">
                             <i class="fas fa-user"></i>
                             <span class="bot-line"></span>Sign IN</a>
                         </a>

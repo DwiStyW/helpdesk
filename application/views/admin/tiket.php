@@ -1,33 +1,14 @@
 <?php
-include "koneksi.php";
-include "cek-login.php";
-
 ini_set('date.timezone', 'Asia/Jakarta');
 date_default_timezone_set('Asia/Jakarta');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <?php include('header.php') ?>
-
-</head>
-
 <body class="animsition">
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
-        <?php include('mobile.php') ?>
-        <!-- END HEADER MOBILE-->
-
-        <!-- MENU SIDEBAR-->
-        <?php include('menu.php') ?>
-        <!-- END MENU SIDEBAR-->
-
         <!-- PAGE CONTAINER-->
         <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <?php include('notif.php') ?>
-            <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -60,24 +41,20 @@ date_default_timezone_set('Asia/Jakarta');
                                         </thead>
                                         <tbody>
                                             <?php
-                                           
-                                            $query = mysqli_query($conn, "SELECT * FROM ticket, kategori WHERE ticket.mesin = kategori.no ORDER BY level ASC, id DESC");
                                             $no = 1;
-                                            while ($data  = mysqli_fetch_array($query)) {
-                                            ?>
+                                            foreach ($tiket as $t) : ?>
                                                 <tr>
-                                                    <td><?php echo $no; ?></td>
-                                                    <td><a href="riwayat.php?notikk=<?php echo $data['notiket'];?>"><?php echo $data['notiket']; ?></a></td>
-                                                    <td><?php echo $data['pelapor']; ?></td>
-                                                    <td><?php echo $data['divisi']; ?></td>
-                                                    <td><?php echo $data['mesin']; ?></td>
-                                                    <td><?php echo $data['status']; ?></td>
-                                                    <td><?php echo $data['holdby']; ?></td>
-                                                    <td><?php echo date("d-m-Y h:m:s", strtotime($data['tgl'])); ?></td>
-                                                    <td><?php if ($data['status'] != 'closed'){ ?><a href="tiketedit.php?tikk=<?php echo $data['notiket']; ?>">Proses</a><?php } ;?></td>
+                                                    <td><?= $t->id ?></td>
+                                                    <td><?= $t->notiket ?></td>
+                                                    <td><?= $t->pelapor ?></td>
+                                                    <td><?= $t->divisi ?></td>
+                                                    <td><?= $t->mesin ?></td>
+                                                    <td><?= $t->status ?></td>
+                                                    <td><?= $t->holdby ?></td>
+                                                    <td><?= $t->tgl ?></td>
+                                                    <td><a href="#">Proses</a></td>
                                                 </tr>
-                                            <?php $no++;
-                                            } ?>
+                                            <?php endforeach ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -85,7 +62,9 @@ date_default_timezone_set('Asia/Jakarta');
                             </div>
                         </div>
 
-                        <?php include('copyright.php'); ?>
+                        <?php $this->load->view('admin/notif');
+                        $this->load->view('admin/copyright');
+                        ?>
                     </div>
                 </div>
             </div>
@@ -94,8 +73,6 @@ date_default_timezone_set('Asia/Jakarta');
         </div>
 
     </div>
-
-   <?php include('footer.php'); ?>
 
 </body>
 

@@ -85,34 +85,35 @@ include "cek-login.php";
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE user_id!=1");
-                                                $no=1;
-                                                while ($data  = mysqli_fetch_array($query)) {
+                                            $query = mysqli_query($conn, "SELECT * FROM tb_user WHERE user_id!=1");
+                                            $no = 1;
+                                            while ($data  = mysqli_fetch_array($query)) {
                                             ?>
-                                            <tr class="tr-shadow">
-                                                <td><?php echo $no; ?></td>
-                                                <td><?php $user=$data['username'];
-                                                echo $user; ?></td>
-                                                <td><?php echo $data['divisi']; ?></td>
-                                                <td><?php echo $data['role']; ?></td>
-                                                    <?php 
-                                                        $query0 = mysqli_query($conn, "SELECT * FROM perform WHERE user_id='$user'");
-                                                        $data0  = mysqli_num_rows($query0);
-                                                     ?>
-                                                 <td>
-                                                    <div class="progress mb-3">
-                                                        <?php
+                                                <tr class="tr-shadow">
+                                                    <td><?php echo $no; ?></td>
+                                                    <td><?php $user = $data['username'];
+                                                        echo $user; ?></td>
+                                                    <td><?php echo $data['divisi']; ?></td>
+                                                    <td><?php echo $data['role']; ?></td>
+                                                    <?php
+                                                    $query0 = mysqli_query($conn, "SELECT * FROM perform WHERE user_id='$user'");
+                                                    $data0  = mysqli_num_rows($query0);
+                                                    ?>
+                                                    <td>
+                                                        <div class="progress mb-3">
+                                                            <?php
                                                             $query01 = mysqli_query($conn, "SELECT * FROM perform");
                                                             $data01  = mysqli_num_rows($query01);
-                                                            $prosen  = $data0/$data01*100;
-                                                        ?>
-                                                        <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?php echo $prosen; ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $data0; ?></div>
-                                                    </div>
-                                                 </td>
-                                                 <td><a href="hapus.php?no=<?php echo $data['user_id']; ?>" onclick="javascript: return confirm('Anda yakin hapus data ? Data yang anda hapus tidak dapat kembali lagi SELAMANYA !')"> Hapus</a></td>
-                                            </tr>
-                                            <tr class="spacer"></tr>
-                                            <?php  $no++; } ?>
+                                                            $prosen  = $data0 / $data01 * 100;
+                                                            ?>
+                                                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" role="progressbar" style="width: <?php echo $prosen; ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><?php echo $data0; ?></div>
+                                                        </div>
+                                                    </td>
+                                                    <td><a href="hapus.php?no=<?php echo $data['user_id']; ?>" onclick="javascript: return confirm('Anda yakin hapus data ? Data yang anda hapus tidak dapat kembali lagi SELAMANYA !')"> Hapus</a></td>
+                                                </tr>
+                                                <tr class="spacer"></tr>
+                                            <?php $no++;
+                                            } ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -124,59 +125,59 @@ include "cek-login.php";
             </div>
             <!-- MAIN CONTENT-->
             <?php include('copyright.php'); ?>
-                    
+
         </div>
     </div>
-            <!-- END MAIN CONTENT-->
-            <section>
-                <!-- tambah user -->
-                <div id="add_data_Modal" class="modal fade">
-                 <div class="modal-dialog">
-                  <div class="modal-content">
-                       <div class="modal-header">
-                            <h4>Tambah User</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                       </div>
-                       <div class="modal-body">
-                            <form method="post" action="insert.php?mode=5">
-                             <label>Nama Lengkap</label>
-                                <input type="text" id="nama" name="nama" class="form-control">
-                             <br/>
-                             <label>Username</label>
-                                <input type="text" id="username" name="username" class="form-control">
-                             <br/>
-                             <label>Password</label>
-                                <input type="Password" id="password" name="password" class="form-control">
-                             <br/>
-                             <label>Divisi</label>
-                                <select name="divisi" id="divisi" class="form-control" required="required">
-                                    <option value="ITE">IT</option>
-                                    <option value="TEK">Teknik</option>
-                                    <option value="BNG">Bangunan</option>
-                                    <option value="PRO">Produksi</option>
-                                </select>
-                             <br/>
-                             <label>Role</label>
-                                <select name="role" id="role" class="form-control" required="required">
-                                    <option value="admin">Admin</option>
-                                    <option value="employee">Employee</option>
-                                    <option value="user">User</option>
-                                </select>
-                             <br/>
-                             <input type="submit" name="insert" id="insert" value="Tambah User" class="btn btn-success" />
-                             <br/>
-                            </form>
-                      </div>
-                   </div>
-                  </div>
-                 </div>
-            </section>
-            <!-- END PAGE CONTAINER-->
+    <!-- END MAIN CONTENT-->
+    <section>
+        <!-- tambah user -->
+        <div id="add_data_Modal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Tambah User</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="insert.php?mode=5">
+                            <label>Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" class="form-control">
+                            <br />
+                            <label>Username</label>
+                            <input type="text" id="username" name="username" class="form-control">
+                            <br />
+                            <label>Password</label>
+                            <input type="Password" id="password" name="password" class="form-control">
+                            <br />
+                            <label>Divisi</label>
+                            <select name="divisi" id="divisi" class="form-control" required="required">
+                                <option value="ITE">IT</option>
+                                <option value="TEK">Teknik</option>
+                                <option value="BNG">Bangunan</option>
+                                <option value="PRO">Produksi</option>
+                            </select>
+                            <br />
+                            <label>Role</label>
+                            <select name="role" id="role" class="form-control" required="required">
+                                <option value="admin">Admin</option>
+                                <option value="employee">Employee</option>
+                                <option value="user">User</option>
+                            </select>
+                            <br />
+                            <input type="submit" name="insert" id="insert" value="Tambah User" class="btn btn-success" />
+                            <br />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END PAGE CONTAINER-->
 
-            
-        
 
-</div>
+
+
+    </div>
 
     <!-- Jquery JS-->
     <script src="../vendor/jquery-3.2.1.min.js"></script>
@@ -198,7 +199,23 @@ include "cek-login.php";
     <script src="../vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="../vendor/select2/select2.min.js">
     </script>
-
+    <script>
+        function deleteConfirm(event) {
+            Swal.fire({
+                title: 'Konfirmasi!',
+                text: 'Yakin ingin Menghapus Data ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'Batal',
+                confirmButtonText: 'Yakin',
+                confirmButtonColor: 'red'
+            }).then(dialog => {
+                if (dialog.isConfirmed) {
+                    window.location.assign(event.dataset.deleteUrl);
+                }
+            });
+        }
+    </script>
     <!-- Main JS-->
     <script src="../js/main.js"></script>
 
